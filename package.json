@@ -1,6 +1,6 @@
 {
   "name": "actions-auth-passport",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "An Openwhisk action that uses PassportJS for User Authentication Proxy",
   "main": "./src/action/auth.js",
   "scripts": {
