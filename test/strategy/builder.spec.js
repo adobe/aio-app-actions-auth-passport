@@ -68,8 +68,14 @@ describe('StrategyBuilder', () => {
                 .withVerifyer(function (accessToken, refreshToken, profile, done_cb) {
                     done();
                 });
-
-            let strategy = builder.buildStrategy();
+            let strategy
+            try{
+                strategy = builder.buildStrategy();
+            }catch(err){
+                expect(err).not.be.equal(undefined)
+                done();
+                return
+            }
 
             expect(builder.auth_provider).to.equal(params.auth_provider);
             expect(builder.client_id).to.equal(params.client_id);

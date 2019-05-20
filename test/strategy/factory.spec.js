@@ -34,9 +34,14 @@ describe('StrategyFactory', () => {
         });
 
         it('which is not imported, should return an error', (done) => {
-            let result = StrategyFactory.getStrategy("invalid");
-            expect(result).to.be.an.instanceOf(Error);
-            done();
+            try{
+                let result = StrategyFactory.getStrategy("invalid");
+                expect(result).to.be.an.instanceOf(Error);
+                done();
+            }catch(err){
+                expect(err).not.be.equal(undefined);
+                done();
+            }
         })
 
     })

@@ -1,4 +1,4 @@
 node_modules
 coverage
-openwhisk-passport-auth-*
-package-lock.json
+actions-auth-passport-*
+junit.xml
