@@ -5,8 +5,8 @@
   "main": "./src/action/auth.js",
   "scripts": {
     "start": "babel-watch ./test/server/index.js",
-    "test": "babel-node ./node_modules/.bin/isparta cover _mocha -- 'test/**/*.spec.js' ",
-    "test_nocov": "mocha 'test/**/*.spec.js' --recursive --compilers js:babel-register",
+    "test": "npm run unit-tests",
+    "unit-tests": "jest --ci",
     "prepublish_": "babel src --out-file ${npm_package_name}-${npm_package_version}.js --source-maps",
     "prepublish": "browserify -r ${npm_package_main}:main-action --node > ${npm_package_name}-${npm_package_version}.js && npm run remove_pkginfo && npm run whisk_wrapper",
     "remove_pkginfo": "replace '^require.*pkginfo' '// removed pkginfo ...' -r ${npm_package_name}-${npm_package_version}.js",
@@ -40,10 +40,14 @@
     "cls-bluebird": "^2.0.1",
     "compression": "^1.6.2",
     "cors": "^2.7.1",
+    "eslint": "^4",
+    "eslint-plugin-jest": "^22.1.2",
     "express": "^4.14.0",
     "http-status": "^0.2.3",
     "isparta": "^4.0.0",
     "istanbul": "^0.3.17",
+    "jest": "^23.0.1",
+    "jest-junit": "^5.0.0",
     "mocha": "^2.5.3",
     "nock": "^9.0.2",
     "openwhisk": "^2.3.0",
@@ -67,5 +71,20 @@
   },
   "keywords": [
     "serverless, openwhisk, authentication, passportjs"
-  ]
+  ],
+  "jest": {
+    "collectCoverage": true,
+    "testPathIgnorePatterns": [
+      "<rootDir>/tests/fixtures/"
+    ],
+    "coveragePathIgnorePatterns": [
+      "<rootDir>/tests/fixtures/"
+    ],
+    "reporters": [
+      "default",
+      "jest-junit"
+    ],
+    "testEnvironment": "node",
+    "setupTestFrameworkScriptFile": "./jest.setup.js"
+  }
 }
