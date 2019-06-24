@@ -13,7 +13,7 @@ import passport from 'passport'
 import StrategyBuilder from './strategy/builder'
 import cookie from 'cookie'
 
-var refresh = require('passport-oauth2-refresh')
+let refresh = require('passport-oauth2-refresh')
 function _authenticate(params) {
     return new Promise((resolve, reject) => {
         //build a strategy for Passport based on input params
@@ -27,15 +27,15 @@ function _authenticate(params) {
                 if( !(params.persistence && params.persistence === 'true') )
                   params.accessToken=accessToken //Store in cookie context
                 let ctx = _updateContext(params, profile);
-                ctx.success_redirect = ctx.success_redirect || params.redirect_url;
+                ctx.redirect_url = ctx.redirect_url || params.redirect_url;
 
-                var refreshExpDate = new Date();
-                var refreshTTL = params["refresh_token_ttl_"+params.auth_provider_name] || 7
+                let refreshExpDate = new Date();
+                let refreshTTL = params["refresh_token_ttl_"+params.auth_provider_name] || 7
                 refreshExpDate.setDate(refreshExpDate.getDate() + refreshTTL);
                 refreshExpDate = formatDate(refreshExpDate);
 
-                var currentTimeInseconds = new Date().getTime() / 1000;
-                var accessTokenExpiry = (currentTimeInseconds + authParams.expires_in)*1000;
+                let currentTimeInseconds = new Date().getTime() / 1000;
+                let accessTokenExpiry = (currentTimeInseconds + authParams.expires_in)*1000;
 
                 response.body = {
                     "profileID": profile.id,
@@ -84,15 +84,15 @@ function _authenticate(params) {
                 console.error(resp.body);
                 resp.body = resp.body.toString();
             }
-            // save the success_redirect in a cookie to
+            // save the redirect_url in a cookie to
             //   set it in the context once the user logs in
             //TODO The following block may not be needed because of package params.
             if (resp.statusCode == 302) {
               let cookie_header = resp.headers['Set-Cookie'];
               if ((cookie_header === null || typeof(cookie_header) === "undefined") &&
-                 (params.success_redirect !== null && typeof(params.success_redirect) !== "undefined")) {
+                 params.redirect_url) {
                 let ctx = _getContext(params);
-                ctx.success_redirect = params.success_redirect;
+                ctx.redirect_url = params.redirect_url;
                 let cookiePath = ctx.cookie_path || params.cookie_path || process.env['__OW_NAMESPACE'] + "/"
                 resp.headers["Set-Cookie"] = '__Secure-auth_context=' + JSON.stringify(ctx) + '; Secure; HttpOnly; Max-Age=600; Path=/api/v1/web/' + cookiePath
               }
@@ -122,12 +122,12 @@ function _authenticate(params) {
 
         if (params.auth_type === 'refresh'){
             refresh.requestNewAccessToken(params.provider, params.refreshToken, function(retVal, accessToken, refreshToken, results){
-              var refreshExpDate = new Date();
-              var refreshTTL = params["refresh_token_ttl_"+params.provider] || 7
+              let refreshExpDate = new Date();
+              let refreshTTL = params["refresh_token_ttl_"+params.provider] || 7
               refreshExpDate.setDate(refreshExpDate.getDate() + refreshTTL);
               refreshExpDate = formatDate(refreshExpDate);
-              var currentTimeInseconds = new Date().getTime() / 1000;
-              var accessTokenExpiry = (currentTimeInseconds + results.expires_in)*1000;
+              let currentTimeInseconds = new Date().getTime() / 1000;
+              let accessTokenExpiry = (currentTimeInseconds + results.expires_in)*1000;
               resolve({
                 "accessToken" : accessToken,
                 "refreshToken" : refreshToken,
@@ -178,7 +178,7 @@ function _updateContext(params, profile) {
   let identity_exists = false;
   let provider = (params.auth_provider_name || params.auth_provider)
   ctx.identities = ctx.identities || [];
-  for (var i=0; i<ctx.identities.length; i++ ){
+  for (let i=0; i<ctx.identities.length; i++ ){
     let ident = ctx.identities[i];
     if (ident !== null && typeof(ident) !== "undefined" &&
         ident.provider == provider && ident.user_id == profile.id) {
@@ -200,16 +200,16 @@ function _updateContext(params, profile) {
 }
 
 function formatDate(date) {
-  var monthNames = [
+  let monthNames = [
     "Jan", "Feb", "Mar",
     "Apr", "May", "Jun", "Jul",
     "Aug", "Sep", "Oct",
     "Nov", "Dec"
   ];
 
-  var day = date.getDate();
-  var monthIndex = date.getMonth();
-  var year = date.getFullYear();
+  let day = date.getDate();
+  let monthIndex = date.getMonth();
+  let year = date.getFullYear();
 
   return day + '' + monthNames[monthIndex] + '' + year;
 }

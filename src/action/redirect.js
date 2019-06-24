@@ -19,10 +19,10 @@ function redirect(params) {
   console.log(params);
   //TODO It may be possible to avoid ctx completely with package params
   let ctx = params.context || {};
-  let redirect = ctx.success_redirect || params.redirect_url;
+  let redirect = ctx.redirect_url || params.redirect_url;
   let cookiePath = ctx.cookie_path || params.cookie_path || process.env['__OW_NAMESPACE'] + "/"
   let cookieMaxAge = ctx.cookie_max_age || params.cookie_max_age || 86400
-  delete ctx.success_redirect; // we don't need it after redirecting
+  delete ctx.redirect_url; // we don't need it after redirecting
   delete ctx.cookie_path; // we don't need it after redirecting
 
   return {
