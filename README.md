@@ -36,7 +36,7 @@ actions belonging to the same package should be able to access this cache, retri
     * `client_secret` - consumer secret
     * `scopes` - optional; the list of scopes to request
     * `callback_url` - this parameter should point to this action
-    * `success_redirect` - a URL to redirect after a successful login. This value is cached in a cookie  named `__Secure-auth_context` in order to be retrieved when the authentication provider invokes the `callback_url`.
+    * `redirect_url` - a URL to redirect after a successful login. This value is cached in a cookie  named `__Secure-auth_context` in order to be retrieved when the authentication provider invokes the `callback_url`.
 
 3. To test the action browse to `https://<openwhisk_hostname>/api/v1/web/<openwhisk_namespace>/oauth/<action_name>`
 
