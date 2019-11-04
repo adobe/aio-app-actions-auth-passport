@@ -1,29 +1,30 @@
 {
-  "name": "actions-auth-passport",
-  "version": "0.1.0",
+  "name": "@adobe/aio-app-actions-auth-passport",
+  "version": "1.0.0",
   "description": "An Openwhisk action that uses PassportJS for User Authentication Proxy",
   "main": "./src/action/auth.js",
   "scripts": {
     "start": "babel-watch ./test/server/index.js",
     "test": "npm run unit-tests",
     "unit-tests": "jest --ci",
-    "prepublish_": "babel src --out-file ${npm_package_name}-${npm_package_version}.js --source-maps",
-    "prepublish": "browserify -r ${npm_package_main}:main-action --node > ${npm_package_name}-${npm_package_version}.js && npm run remove_pkginfo && npm run whisk_wrapper",
-    "remove_pkginfo": "replace '^require.*pkginfo' '// removed pkginfo ...' -r ${npm_package_name}-${npm_package_version}.js",
-    "whisk_wrapper": "echo \"var main = require('main-action').default;\" >> ${npm_package_name}-${npm_package_version}.js"
+    "prepublish_": "babel src --out-file aio-app-auth-passport.js --source-maps",
+    "prepublish": "browserify -r ${npm_package_main}:main-action --node > aio-app-auth-passport.js && npm run remove_pkginfo && npm run whisk_wrapper",
+    "remove_pkginfo": "replace '^require.*pkginfo' '// removed pkginfo ...' -r aio-app-auth-passport.js",
+    "whisk_wrapper": "echo \"var main = require('main-action').default;\" >> aio-app-auth-passport.js"
   },
   "author": "Dragos Dascalita Haut <ddascal@adobe.com>",
   "license": "Apache-2.0",
   "dependencies": {
     "cookie": "^0.3.1",
     "passport": "^0.3.2",
+    "passport-adobe-oauth2": "^1.0.1",
     "passport-facebook": "^2.1.1",
     "passport-github": "^1.1.0",
     "passport-google": "^0.3.0",
     "passport-google-oauth20": "^1.0.0",
     "passport-oauth2-refresh": "^1.0.0",
     "passport-twitter": "^1.0.4",
-    "passport-adobe-oauth2": "^1.0.1"
+    "replace": "^1.1.0"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",
@@ -42,20 +43,13 @@
     "cors": "^2.7.1",
     "eslint": "^4",
     "eslint-plugin-jest": "^22.1.2",
-    "express": "^4.14.0",
     "http-status": "^0.2.3",
     "isparta": "^4.0.0",
-    "istanbul": "^0.3.17",
     "jest": "^23.0.1",
     "jest-junit": "^5.0.0",
-    "mocha": "^2.5.3",
     "nock": "^9.0.2",
-    "openwhisk": "^2.3.0",
-    "replace": "^0.3.0",
     "request": "^2.79.0",
-    "resource-router-middleware": "^0.6.0",
-    "supertest": "^1.1.0",
-    "supertest-as-promised": "^2.0.2"
+    "resource-router-middleware": "^0.6.0"
   },
   "browserify": {
     "transform": [
