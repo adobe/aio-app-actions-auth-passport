@@ -24,7 +24,8 @@ function _authenticate(params) {
             .withVerifyer(function (accessToken, refreshToken, authParams, profile, done) {
                 console.log("Logged in successfully ... ");
                 profile.id = params.client_id + ":oauth:" + profile.id;
-                if( !(params.persistence && params.persistence === 'true') )
+                let persistence = (params.persistence || 'false').toString().toLowerCase()
+                if(persistence !== 'true')
                   params.accessToken=accessToken //Store in cookie context
                 let ctx = _updateContext(params, profile);
                 ctx.success_redirect = ctx.success_redirect || params.redirect_url;
