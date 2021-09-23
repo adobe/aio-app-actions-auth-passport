@@ -27,12 +27,12 @@
     "replace": "^1.1.0"
   },
   "devDependencies": {
-    "babel-cli": "^6.18.0",
+    "@babel/cli": "^7",
     "babel-core": "^6.16.0",
     "babel-preset-babili": "0.0.9",
     "babel-preset-es2015": "^6.16.0",
     "babel-preset-latest": "^6.16.0",
-    "babel-watch": "^2.0.2",
+    "babel-watch": "^7",
     "babelify": "^7.3.0",
     "body-parser": "^1.15.2",
     "browserify": "^13.1.1",
@@ -45,7 +45,7 @@
     "eslint-plugin-jest": "^22.1.2",
     "http-status": "^0.2.3",
     "isparta": "^4.0.0",
-    "jest": "^23.0.1",
+    "jest": "^27",
     "jest-junit": "^5.0.0",
     "nock": "^9.0.2",
     "request": "^2.79.0",
