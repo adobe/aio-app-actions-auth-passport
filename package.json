@@ -9,7 +9,7 @@
     "unit-tests": "jest --ci",
     "prepublish_": "babel src --out-file aio-app-auth-passport.js --source-maps",
     "prepublish": "echo browserify -r ${npm_package_main}:main-action --node > aio-app-auth-passport.js && npm run remove_pkginfo && npm run whisk_wrapper",
-    "remove_pkginfo": "replace '^require.*pkginfo' '// removed pkginfo ...' -r aio-app-auth-passport.js",
+    "remove_pkginfo": "./node_modules/.bin/replace '^require.*pkginfo' '// removed pkginfo ...' -r aio-app-auth-passport.js",
     "whisk_wrapper": "echo \"const main = require('main-action').default;\" >> aio-app-auth-passport.js",
     "env": "echo $npm_package_name"
   },
