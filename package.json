@@ -8,9 +8,10 @@
     "test": "npm run unit-tests",
     "unit-tests": "jest --ci",
     "prepublish_": "babel src --out-file aio-app-auth-passport.js --source-maps",
-    "prepublish": "browserify -r ${npm_package_main}:main-action --node > aio-app-auth-passport.js && npm run remove_pkginfo && npm run whisk_wrapper",
+    "prepublish": "echo browserify -r ${npm_package_main}:main-action --node > aio-app-auth-passport.js && npm run remove_pkginfo && npm run whisk_wrapper",
     "remove_pkginfo": "replace '^require.*pkginfo' '// removed pkginfo ...' -r aio-app-auth-passport.js",
-    "whisk_wrapper": "echo \"var main = require('main-action').default;\" >> aio-app-auth-passport.js"
+    "whisk_wrapper": "echo \"const main = require('main-action').default;\" >> aio-app-auth-passport.js",
+    "env": "echo $npm_package_name"
   },
   "author": "Dragos Dascalita Haut <ddascal@adobe.com>",
   "license": "Apache-2.0",
@@ -41,7 +42,7 @@
     "cls-bluebird": "^2.0.1",
     "compression": "^1.6.2",
     "cors": "^2.7.1",
-    "eslint": "^4",
+    "eslint": "^8.31.0",
     "eslint-plugin-jest": "^22.1.2",
     "http-status": "^0.2.3",
     "isparta": "^4.0.0",
