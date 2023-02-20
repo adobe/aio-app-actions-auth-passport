@@ -47,7 +47,7 @@
     "http-status": "^0.2.3",
     "isparta": "^4.0.0",
     "jest": "^23.0.1",
-    "jest-junit": "^5.0.0",
+    "jest-junit": "^15.0.0",
     "nock": "^9.0.2",
     "request": "^2.79.0",
     "resource-router-middleware": "^0.6.0"
