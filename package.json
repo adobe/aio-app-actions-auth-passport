@@ -19,7 +19,7 @@
     "cookie": "^0.4.1",
     "passport": "^0.4.1",
     "passport-adobe-oauth2": "^1.0.1",
-    "passport-facebook": "^2.1.1",
+    "passport-facebook": "^3.0.0",
     "passport-github": "^1.1.0",
     "passport-google": "^0.3.0",
     "passport-google-oauth20": "^1.0.0",
