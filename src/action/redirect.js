@@ -35,3 +35,5 @@ function redirect(params) {
     body: ""
   }
 }
+
+module.exports = redirect
