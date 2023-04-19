@@ -13,7 +13,7 @@ import passport from 'passport'
 import StrategyBuilder from './strategy/builder'
 import cookie from 'cookie'
 
-var refresh = require('passport-oauth2-refresh')
+const refresh = require('passport-oauth2-refresh')
 function _authenticate(params) {
     return new Promise((resolve, reject) => {
         //build a strategy for Passport based on input params
@@ -21,7 +21,7 @@ function _authenticate(params) {
             .withProvider(params.auth_provider)
             .withCredentials(params.client_id, params.client_secret)
             .withCallbackURL(params.callback_url)
-            .withVerifyer(function (accessToken, refreshToken, authParams, profile, done) {
+            .withVerifyer(function (accessToken, refreshToken, authParams, profile) {
                 console.log("Logged in successfully ... ");
                 profile.id = params.client_id + ":oauth:" + profile.id;
                 let persistence = (params.persistence || 'false').toString().toLowerCase()
@@ -30,13 +30,13 @@ function _authenticate(params) {
                 let ctx = _updateContext(params, profile);
                 ctx.success_redirect = ctx.success_redirect || params.redirect_url;
 
-                var refreshExpDate = new Date();
-                var refreshTTL = params["refresh_token_ttl_"+params.auth_provider_name] || 7
+                let refreshExpDate = new Date();
+                let refreshTTL = params["refresh_token_ttl_"+params.auth_provider_name] || 7
                 refreshExpDate.setDate(refreshExpDate.getDate() + refreshTTL);
                 refreshExpDate = formatDate(refreshExpDate);
 
-                var currentTimeInseconds = new Date().getTime() / 1000;
-                var accessTokenExpiry = (currentTimeInseconds + authParams.expires_in)*1000;
+                let currentTimeInseconds = new Date().getTime() / 1000;
+                let accessTokenExpiry = (currentTimeInseconds + authParams.expires_in)*1000;
 
                 response.body = {
                     "profileID": profile.id,
@@ -123,12 +123,12 @@ function _authenticate(params) {
 
         if (params.auth_type === 'refresh'){
             refresh.requestNewAccessToken(params.provider, params.refreshToken, function(retVal, accessToken, refreshToken, results){
-              var refreshExpDate = new Date();
-              var refreshTTL = params["refresh_token_ttl_"+params.provider] || 7
+              let refreshExpDate = new Date();
+              let refreshTTL = params["refresh_token_ttl_"+params.provider] || 7
               refreshExpDate.setDate(refreshExpDate.getDate() + refreshTTL);
               refreshExpDate = formatDate(refreshExpDate);
-              var currentTimeInseconds = new Date().getTime() / 1000;
-              var accessTokenExpiry = (currentTimeInseconds + results.expires_in)*1000;
+              let currentTimeInseconds = new Date().getTime() / 1000;
+              let accessTokenExpiry = (currentTimeInseconds + results.expires_in)*1000;
               resolve({
                 "accessToken" : accessToken,
                 "refreshToken" : refreshToken,
@@ -176,14 +176,12 @@ function _updateContext(params, profile) {
   // NOTE: there's no check for duplicated providers, ne design.
   //       2 accounts from the same provider can be linked together as well.
   // avoid duplicated identities
-  let identity_exists = false;
   let provider = (params.auth_provider_name || params.auth_provider)
   ctx.identities = ctx.identities || [];
-  for (var i=0; i<ctx.identities.length; i++ ){
+  for (let i=0; i<ctx.identities.length; i++ ){
     let ident = ctx.identities[i];
     if (ident !== null && typeof(ident) !== "undefined" &&
         ident.provider == provider && ident.user_id == profile.id) {
-      identity_exists = true;
       if(params.accessToken)
         ident.accessToken = params.accessToken
       return ctx;
@@ -201,16 +199,16 @@ function _updateContext(params, profile) {
 }
 
 function formatDate(date) {
-  var monthNames = [
+  let monthNames = [
     "Jan", "Feb", "Mar",
     "Apr", "May", "Jun", "Jul",
     "Aug", "Sep", "Oct",
     "Nov", "Dec"
   ];
 
-  var day = date.getDate();
-  var monthIndex = date.getMonth();
-  var year = date.getFullYear();
+  let day = date.getDate();
+  let monthIndex = date.getMonth();
+  let year = date.getFullYear();
 
   return day + '' + monthNames[monthIndex] + '' + year;
 }

@@ -10,9 +10,6 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 import chai from 'chai';
-import {
-    expect
-} from 'chai';
 import chaiAsPromised from 'chai-as-promised';
 import action from '../src/action/auth.js';
 
