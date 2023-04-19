@@ -19,7 +19,7 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm i --package-lock --package-lock-only
+    - run: npm i --package-lock --package-lock-only --ignore-scripts
     - run: npm ci
     - name: run unit tests
       run: npm run test
