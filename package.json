@@ -23,7 +23,7 @@
     "passport-github": "^1.1.0",
     "passport-google": "^0.3.0",
     "passport-google-oauth20": "^1.0.0",
-    "passport-oauth2-refresh": "^1.0.0",
+    "passport-oauth2-refresh": "^2.2.0",
     "passport-twitter": "^1.0.4",
     "replace": "^1.1.0"
   },
