@@ -2,3 +2,5 @@ node_modules
 coverage
 actions-auth-passport-*
 junit.xml
+package-lock.json
+aio-app-auth-passport.js

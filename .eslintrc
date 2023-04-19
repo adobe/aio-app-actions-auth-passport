@@ -2,17 +2,13 @@
     "env": {
         "node": true,
         "es6": true,
-        "jest": true
+        "chai": true
     },
     "parserOptions": {
         "ecmaVersion": 2017,
         "sourceType": "module"
     },
-    "plugins": [
-        "jest"
-    ],
     "extends": [
-        "plugin:jest/recommended",
         "eslint:recommended"
     ],
     "rules": {
