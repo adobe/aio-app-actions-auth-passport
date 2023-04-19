@@ -21,7 +21,6 @@ program
   .argument('<fileName>', 'string argument')
   .action((regExFind, replaceString, fileName, options) => {
 
-    console.log(regExFind,',', replaceString, ',', fileName)
     replace({
       regex: regExFind,
       replacement: replaceString,
