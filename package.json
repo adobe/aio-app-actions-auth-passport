@@ -16,7 +16,7 @@
   "author": "Dragos Dascalita Haut <ddascal@adobe.com>",
   "license": "Apache-2.0",
   "dependencies": {
-    "cookie": "^0.4.1",
+    "cookie": "^0.5.0",
     "passport": "^0.6.0",
     "passport-adobe-oauth2": "^1.0.1",
     "passport-facebook": "^2.1.1",
