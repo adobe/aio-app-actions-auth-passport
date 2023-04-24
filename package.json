@@ -37,7 +37,7 @@
     "babelify": "^7.3.0",
     "body-parser": "^1.15.2",
     "browserify": "^13.1.1",
-    "chai": "^3.5.0",
+    "chai": "^4.3.7",
     "chai-as-promised": "^6.0.0",
     "cls-bluebird": "^2.0.1",
     "commander": "^10.0.1",
