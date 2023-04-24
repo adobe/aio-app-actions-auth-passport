@@ -36,7 +36,7 @@
     "babel-watch": "^2.0.2",
     "babelify": "^7.3.0",
     "body-parser": "^1.15.2",
-    "browserify": "^13.1.1",
+    "browserify": "^17.0.0",
     "chai": "^3.5.0",
     "chai-as-promised": "^6.0.0",
     "cls-bluebird": "^2.0.1",
