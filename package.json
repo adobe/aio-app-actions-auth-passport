@@ -28,6 +28,7 @@
     "replace": "^1.1.0"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.22.9",
     "babel-cli": "^6.18.0",
     "babel-core": "^6.16.0",
     "babel-preset-babili": "0.0.9",
@@ -63,7 +64,7 @@
   },
   "babel": {
     "presets": [
-      "latest"
+      ["@babel/preset-env"]
     ]
   },
   "keywords": [
@@ -82,6 +83,8 @@
       "jest-junit"
     ],
     "testEnvironment": "node",
-    "setupTestFrameworkScriptFile": "./jest.setup.js"
+    "setupFilesAfterEnv": [
+      "./jest.setup.js"
+    ]
   }
 }
