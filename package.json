@@ -39,7 +39,7 @@
     "body-parser": "^1.15.2",
     "browserify": "^17.0.0",
     "chai": "^4.3.7",
-    "chai-as-promised": "^6.0.0",
+    "chai-as-promised": "^7",
     "cls-bluebird": "^2.0.1",
     "commander": "^10.0.1",
     "compression": "^1.6.2",
