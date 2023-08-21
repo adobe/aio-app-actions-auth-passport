@@ -53,7 +53,7 @@
     "nock": "^13.3.0",
     "pkg-up": "^3.1.0",
     "request": "^2.79.0",
-    "resource-router-middleware": "^0.6.0"
+    "resource-router-middleware": "^0.7.0"
   },
   "browserify": {
     "transform": [
